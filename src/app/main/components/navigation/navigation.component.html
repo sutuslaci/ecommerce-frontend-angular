@@ -1,0 +1,14 @@
+<section id="navigation">
+    <div class="toolbar">
+        <ng-container *ngIf="isAuthenticated(); else login">
+            <div class="login-btn" (click)="logout()">
+                <span>Logout</span>
+            </div>
+        </ng-container>
+        <ng-template #login>
+            <div [routerLink]="[PATH.LOGIN]" class="login-btn">
+                <span>Login</span>
+            </div>
+        </ng-template>
+    </div>
+</section>
