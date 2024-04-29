@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
+import { API_PATH } from '../constants/api.constant';
 import { TokenHelper } from '../helpers/token.helper';
 import { AuthenticationResponse } from '../models/authentication-response';
 import { RegistrationRequest } from '../models/registration-request';
@@ -30,7 +31,7 @@ export class AuthService {
     }
 
     login(email: string, password: string): void {
-        this.httpClient.post<AuthenticationResponse>('http://localhost:8080/api/auth/login', { email, password }).pipe(
+        this.httpClient.post<AuthenticationResponse>(`${API_PATH}/api/auth/login`, { email, password }).pipe(
             catchError((error: HttpErrorResponse) => {
                 this.handleUnauthorizedError(error);
                 return EMPTY;
@@ -46,7 +47,7 @@ export class AuthService {
     }
 
     signUp(registrationRequest: RegistrationRequest): void {
-        this.httpClient.post<AuthenticationResponse>('http://localhost:8080/api/auth/registration', registrationRequest).pipe(
+        this.httpClient.post<AuthenticationResponse>(`${API_PATH}/api/auth/registration`, registrationRequest).pipe(
             catchError(throwError)
         ).subscribe((response: AuthenticationResponse) =>
             this.authenticate(response.accessToken)

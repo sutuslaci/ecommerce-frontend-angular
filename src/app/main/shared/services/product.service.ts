@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 
 import { ProductListOptions } from '../../components/product-list/models/product-list-options';
+import { API_PATH } from '../constants/api.constant';
 import { Product } from '../models/product';
 import { ProductListItem } from '../models/product-list-item';
 
@@ -20,14 +21,14 @@ export class ProductService {
     const params = new HttpParams()
       .set('offset', options.offset)
       .set('pageSize', options.pageSize);
-    this.httpClient.get<ProductListItem[]>('http://localhost:8080/api/product/list', { params })
+    this.httpClient.get<ProductListItem[]>(`${API_PATH}/api/product/list`, { params })
       .subscribe(products => this._productList.set(products));
   }
 
   selectProduct(url: string): void {
     const params = new HttpParams()
       .set('url', url);
-    this.httpClient.get<Product>('http://localhost:8080/api/product/details', { params })
+    this.httpClient.get<Product>(`${API_PATH}/api/product/details`, { params })
       .subscribe(product => this._selectedProduct.set(product));
   }
 }
