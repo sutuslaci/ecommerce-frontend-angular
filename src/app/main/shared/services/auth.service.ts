@@ -1,6 +1,6 @@
-import { catchError, throwError } from 'rxjs';
+import { catchError, EMPTY, throwError } from 'rxjs';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -13,8 +13,10 @@ import { RegistrationRequest } from '../models/registration-request';
 })
 export class AuthService {
     private _isAuthenticated = signal(false);
+    private _errors = signal(null);
 
     readonly isAuthenticated = this._isAuthenticated.asReadonly();
+    readonly errors = this._errors.asReadonly();
 
     constructor(
         private httpClient: HttpClient,
@@ -29,7 +31,10 @@ export class AuthService {
 
     login(email: string, password: string): void {
         this.httpClient.post<AuthenticationResponse>('http://localhost:8080/api/auth/login', { email, password }).pipe(
-            catchError(throwError)
+            catchError((error: HttpErrorResponse) => {
+                this.handleUnauthorizedError(error);
+                return EMPTY;
+            })
         ).subscribe((response: AuthenticationResponse) =>
             this.authenticate(response.accessToken)
         );
@@ -51,5 +56,9 @@ export class AuthService {
     private authenticate(accessToken: string): void {
         TokenHelper.saveAccessToken(accessToken);
         this._isAuthenticated.set(true);
+    }
+
+    private handleUnauthorizedError(error: HttpErrorResponse): void {
+        this._errors.set(error.error);
     }
 }
