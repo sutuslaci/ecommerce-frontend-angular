@@ -21,6 +21,7 @@ export class ProductService {
     const params = new HttpParams()
       .set('offset', options.offset)
       .set('pageSize', options.pageSize);
+
     this.httpClient.get<ProductListItem[]>(`${API_PATH}/api/product/list`, { params })
       .subscribe(products => this._productList.set(products));
   }

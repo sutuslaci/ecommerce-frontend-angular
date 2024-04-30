@@ -1,0 +1,29 @@
+.product-list {
+    margin: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.product-list .container {
+    width: 300px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    float: left;
+    cursor: pointer;
+}
+.product-list .container .image {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 10px;
+    display: block;
+}
+.product-list .container .name {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.product-list .container .price {
+    color: green;
+}

@@ -1,5 +1,8 @@
 <section id="navigation">
     <div class="toolbar">
+        <div class="home-btn" [routerLink]="[PATH.HOME]">
+            <span>Home</span>
+        </div>
         <ng-container *ngIf="isAuthenticated(); else login">
             <div class="login-btn" (click)="logout()">
                 <span>Logout</span>
