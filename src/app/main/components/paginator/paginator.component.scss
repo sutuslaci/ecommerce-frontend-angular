@@ -1,0 +1,43 @@
+.pagination {
+    margin: 10px;
+    height: 40px;
+}
+
+.pagination .page-counter {
+    background: #e2e2e2;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 0 5px;
+    box-shadow: 1px 1px 1px rgb(128, 128, 128);
+}
+
+.pagination .page-counter input {
+    width: 35px;
+    border: 1px solid #b6b6b6;
+    border-radius: 5px;
+    height: 20px;
+    text-align: center;
+    color: #4f4f4f;
+    &:focus {
+        outline: none;
+    }
+}
+
+.pagination .page-turner button {
+    height: 40px;
+    width: 40px;
+    background: #f8f8f8;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgb(128, 128, 128);
+    font-weight: 800;
+    margin: 0 2px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    &:hover {
+        background: #e2e2e2;
+    }
+    &:disabled {
+        background: #e2e2e2;
+    }
+}

@@ -14,3 +14,21 @@ body {
     display: flex;
     justify-content: flex-end;
 }
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.height-100 {
+    height: 100%;
+}
+
+.width-100 {
+    width: 100%;
+}

@@ -1,1 +1,1 @@
-export const API_PATH = 'https://spring-boot-app-test.azurewebsites.net';
+export const API_PATH = 'http://localhost:8080';

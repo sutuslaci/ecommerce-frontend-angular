@@ -1,0 +1,12 @@
+<div class="pagination">
+    <div class="flex-row flex-center height-100">
+        <div class="page-counter">
+            <input id="page-number" [ngModel]="pageIndex + 1" (blur)="onInputValueChange($event)"> /
+            {{ getTotalPages() }}
+        </div>
+        <div class="page-turner">
+            <button (click)="previousPage()" [disabled]="pageIndex === 0">&lt;</button>
+            <button (click)="nextPage()" [disabled]="getTotalPages() - 1 === pageIndex">&gt;</button>
+        </div>
+    </div>
+</div>
